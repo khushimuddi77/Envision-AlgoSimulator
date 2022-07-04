@@ -96,6 +96,14 @@ function selectionSort() {
     loop()
 }
 
+function insertionSort() {
+    si = 1
+    sj = 0
+    st = si
+    sort = "INSERTION"
+    loop()
+}
+
 function draw() {
     if(sort == "BUBBLE") {
         if(!swapping) {
@@ -148,6 +156,35 @@ function draw() {
         }
         else {
             drawBars(st, si)
+        }
+    }
+    else if(sort == "INSERTION") {
+        if(!swapping) {
+            if(sj < 0) {
+                ++si
+                sj = si - 1;
+            }
+            if(si >= arr.length) {
+                si = -10
+                sj = -10
+                st = -10
+                sort = "#"
+                noLoop()
+            }
+            if(sj >=0) {
+                drawBars(sj, sj + 1)
+                sleep(1000 - slider.value() * 10)
+                if(arr[sj] > arr[sj + 1]) {
+                    swap(sj, sj + 1)
+                }
+                else {
+                    sj = 0;
+                }
+                --sj;
+            }
+        }
+        else {
+            drawBars(sj + 1, sj + 2)
         }
     }
     frameRate(144)
